@@ -66,3 +66,7 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 - [Shadcn/ui](https://ui.shadcn.com/) for the beautiful UI components
 - [Lucide Icons](https://lucide.dev/) for the icons
 - [html2pdf.js](https://ekoopmans.github.io/html2pdf.js/) for PDF generation
+
+
+## Made with ❤️ in India
+
