@@ -5,6 +5,7 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
+  assetPrefix: process.env.NEXT_PUBLIC_BASE_PATH,
 }
 
 module.exports = nextConfig 
