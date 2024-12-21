@@ -12,21 +12,22 @@ export interface SocialLink {
 export interface Experience {
   company: string;
   position: string;
-  date: string;
-  location: string;
-  achievements: string[];
+  startDate: string;
+  endDate: string;
+  description: string;
 }
 
-export interface SkillCategory {
-  category: string;
-  items: string[];
+export interface Skill {
+  name: string;
+  level: string;
 }
 
 export interface Education {
   institution: string;
   degree: string;
-  date: string;
-  location: string;
+  startDate: string;
+  endDate: string;
+  description: string;
 }
 
 export interface ResumeData {
@@ -36,6 +37,6 @@ export interface ResumeData {
   socialLinks: SocialLink[];
   summary: string;
   experience: Experience[];
-  skills: SkillCategory[];
+  skills: Skill[];
   education: Education[];
 }

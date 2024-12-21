@@ -10,33 +10,33 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
-interface ExperienceSectionProps {
+interface EducationSectionProps {
   data: ResumeData;
   onChange: (data: ResumeData) => void;
 }
 
-export function ExperienceSection({ data, onChange }: ExperienceSectionProps) {
-  const addExperience = () => {
+export function EducationSection({ data, onChange }: EducationSectionProps) {
+  const addEducation = () => {
     onChange({
       ...data,
-      experience: [
-        ...data.experience,
-        { company: "", position: "", startDate: "", endDate: "", description: "" }
+      education: [
+        ...data.education,
+        { institution: "", degree: "", startDate: "", endDate: "", description: "" }
       ]
     });
   };
 
   return (
-    <AccordionItem value="experience">
-      <AccordionTrigger>Work Experience</AccordionTrigger>
+    <AccordionItem value="education">
+      <AccordionTrigger>Education</AccordionTrigger>
       <AccordionContent>
         <div className="space-y-4">
-          <Button onClick={addExperience} size="sm" variant="outline" className="w-full">
+          <Button onClick={addEducation} size="sm" variant="outline" className="w-full">
             <Plus className="h-4 w-4 mr-2" />
-            Add Experience
+            Add Education
           </Button>
           
-          {data.experience.map((exp, index) => (
+          {data.education.map((edu, index) => (
             <div key={index} className="space-y-4 p-4 border rounded-lg">
               <div className="flex justify-end">
                 <Button
@@ -45,7 +45,7 @@ export function ExperienceSection({ data, onChange }: ExperienceSectionProps) {
                   onClick={() =>
                     onChange({
                       ...data,
-                      experience: data.experience.filter((_, i) => i !== index)
+                      education: data.education.filter((_, i) => i !== index)
                     })
                   }
                 >
@@ -55,25 +55,25 @@ export function ExperienceSection({ data, onChange }: ExperienceSectionProps) {
               
               <div className="space-y-4">
                 <div>
-                  <Label>Company</Label>
+                  <Label>Institution</Label>
                   <Input
-                    value={exp.company}
+                    value={edu.institution}
                     onChange={(e) => {
-                      const newExp = [...data.experience];
-                      newExp[index] = { ...exp, company: e.target.value };
-                      onChange({ ...data, experience: newExp });
+                      const newEdu = [...data.education];
+                      newEdu[index] = { ...edu, institution: e.target.value };
+                      onChange({ ...data, education: newEdu });
                     }}
                   />
                 </div>
                 
                 <div>
-                  <Label>Position</Label>
+                  <Label>Degree</Label>
                   <Input
-                    value={exp.position}
+                    value={edu.degree}
                     onChange={(e) => {
-                      const newExp = [...data.experience];
-                      newExp[index] = { ...exp, position: e.target.value };
-                      onChange({ ...data, experience: newExp });
+                      const newEdu = [...data.education];
+                      newEdu[index] = { ...edu, degree: e.target.value };
+                      onChange({ ...data, education: newEdu });
                     }}
                   />
                 </div>
@@ -82,22 +82,22 @@ export function ExperienceSection({ data, onChange }: ExperienceSectionProps) {
                   <div>
                     <Label>Start Date</Label>
                     <Input
-                      value={exp.startDate}
+                      value={edu.startDate}
                       onChange={(e) => {
-                        const newExp = [...data.experience];
-                        newExp[index] = { ...exp, startDate: e.target.value };
-                        onChange({ ...data, experience: newExp });
+                        const newEdu = [...data.education];
+                        newEdu[index] = { ...edu, startDate: e.target.value };
+                        onChange({ ...data, education: newEdu });
                       }}
                     />
                   </div>
                   <div>
                     <Label>End Date</Label>
                     <Input
-                      value={exp.endDate}
+                      value={edu.endDate}
                       onChange={(e) => {
-                        const newExp = [...data.experience];
-                        newExp[index] = { ...exp, endDate: e.target.value };
-                        onChange({ ...data, experience: newExp });
+                        const newEdu = [...data.education];
+                        newEdu[index] = { ...edu, endDate: e.target.value };
+                        onChange({ ...data, education: newEdu });
                       }}
                     />
                   </div>
@@ -106,11 +106,11 @@ export function ExperienceSection({ data, onChange }: ExperienceSectionProps) {
                 <div>
                   <Label>Description</Label>
                   <Textarea
-                    value={exp.description}
+                    value={edu.description}
                     onChange={(e) => {
-                      const newExp = [...data.experience];
-                      newExp[index] = { ...exp, description: e.target.value };
-                      onChange({ ...data, experience: newExp });
+                      const newEdu = [...data.education];
+                      newEdu[index] = { ...edu, description: e.target.value };
+                      onChange({ ...data, education: newEdu });
                     }}
                   />
                 </div>

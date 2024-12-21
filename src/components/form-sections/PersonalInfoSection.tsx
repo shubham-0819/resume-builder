@@ -1,4 +1,4 @@
-import { ResumeData } from '@/types/resume';
+import { ResumeData, Contact, SocialLink } from '@/types/resume';
 import { AccordionItem, AccordionTrigger, AccordionContent } from '@/components/ui/accordion';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -12,7 +12,7 @@ interface PersonalInfoSectionProps {
 }
 
 export function PersonalInfoSection({ data, onChange }: PersonalInfoSectionProps) {
-  const updateField = (field: keyof ResumeData, value: any) => {
+  const updateField = (field: keyof ResumeData, value: string | Contact[] | SocialLink[]) => {
     onChange({ ...data, [field]: value });
   };
 
