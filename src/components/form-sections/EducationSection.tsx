@@ -16,7 +16,14 @@ export function EducationSection({ data, onChange }: EducationSectionProps) {
       ...data,
       education: [
         ...data.education,
-        { institution: "", degree: "", startDate: "", endDate: "", description: "" }
+        { 
+          institution: "", 
+          degree: "", 
+          startDate: "", 
+          endDate: "", 
+          location: "",
+          description: "" 
+        }
       ]
     });
   };
@@ -95,6 +102,18 @@ export function EducationSection({ data, onChange }: EducationSectionProps) {
                     }}
                   />
                 </div>
+              </div>
+              
+              <div>
+                <Label>Location</Label>
+                <Input
+                  value={edu.location}
+                  onChange={(e) => {
+                    const newEdu = [...data.education];
+                    newEdu[index] = { ...edu, location: e.target.value };
+                    onChange({ ...data, education: newEdu });
+                  }}
+                />
               </div>
               
               <div>

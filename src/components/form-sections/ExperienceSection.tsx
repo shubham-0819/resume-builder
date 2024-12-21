@@ -1,117 +1,139 @@
-import { ResumeData } from "@/types/resume";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
-import { Plus, Trash2 } from "lucide-react";
+import { Experience } from "@/types/resume";
+import { Plus, Trash2, GripVertical } from "lucide-react";
+import { Textarea } from "../ui/textarea";
 
 interface ExperienceSectionProps {
-  data: ResumeData;
-  onChange: (data: ResumeData) => void;
+  experiences: Experience[];
+  onChange: (experiences: Experience[]) => void;
 }
 
-export function ExperienceSection({ data, onChange }: ExperienceSectionProps) {
+export function ExperienceSection({ experiences = [], onChange }: ExperienceSectionProps) {
   const addExperience = () => {
-    onChange({
-      ...data,
-      experience: [
-        ...data.experience,
-        { company: "", position: "", startDate: "", endDate: "", description: "" }
-      ]
-    });
+    onChange([
+      ...experiences,
+      {
+        company: "",
+        position: "",
+        startDate: "",
+        endDate: "",
+        location: "",
+        bulletPoints: [""],
+      },
+    ]);
+  };
+
+  const updateExperience = (index: number, field: keyof Experience, value: string) => {
+    const updatedExperiences = [...experiences];
+    updatedExperiences[index] = { ...updatedExperiences[index], [field]: value };
+    onChange(updatedExperiences);
+  };
+
+  const removeExperience = (index: number) => {
+    onChange(experiences.filter((_, i) => i !== index));
+  };
+
+  const addBulletPoint = (experienceIndex: number) => {
+    const updatedExperiences = [...experiences];
+    updatedExperiences[experienceIndex].bulletPoints.push("");
+    onChange(updatedExperiences);
+  };
+
+  const updateBulletPoint = (experienceIndex: number, bulletIndex: number, value: string) => {
+    const updatedExperiences = [...experiences];
+    updatedExperiences[experienceIndex].bulletPoints[bulletIndex] = value;
+    onChange(updatedExperiences);
+  };
+
+  const removeBulletPoint = (experienceIndex: number, bulletIndex: number) => {
+    const updatedExperiences = [...experiences];
+    updatedExperiences[experienceIndex].bulletPoints = updatedExperiences[experienceIndex].bulletPoints.filter((_, i) => i !== bulletIndex);
+    onChange(updatedExperiences);
   };
 
   return (
     <div className="space-y-4">
-      <h2 className="text-lg font-semibold">Work Experience</h2>
-      <div className="space-y-4">
-        <Button onClick={addExperience} size="sm" variant="outline" className="w-full">
-          <Plus className="h-4 w-4 mr-2" />
-          Add Experience
-        </Button>
-        
-        {data.experience.map((exp, index) => (
-          <div key={index} className="space-y-4 p-4 border rounded-lg">
-            <div className="flex justify-end">
+      {experiences.map((experience, index) => (
+        <div key={index} className="space-y-4 p-4 border rounded-lg">
+          <div className="flex justify-between items-center">
+            <h4 className="font-medium">Experience {index + 1}</h4>
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => removeExperience(index)}
+            >
+              <Trash2 className="h-4 w-4" />
+            </Button>
+          </div>
+
+          <div className="grid grid-cols-2 gap-4">
+            <Input
+              placeholder="Company"
+              value={experience.company}
+              onChange={(e) => updateExperience(index, "company", e.target.value)}
+            />
+            <Input
+              placeholder="Position"
+              value={experience.position}
+              onChange={(e) => updateExperience(index, "position", e.target.value)}
+            />
+            <Input
+              placeholder="Start Date"
+              value={experience.startDate}
+              onChange={(e) => updateExperience(index, "startDate", e.target.value)}
+            />
+            <Input
+              placeholder="End Date"
+              value={experience.endDate}
+              onChange={(e) => updateExperience(index, "endDate", e.target.value)}
+            />
+            <Input
+              placeholder="Location"
+              value={experience.location}
+              onChange={(e) => updateExperience(index, "location", e.target.value)}
+            />
+          </div>
+
+          <div className="space-y-2">
+            <div className="flex justify-between items-center">
+              <h5 className="text-sm font-medium">Bullet Points</h5>
               <Button
-                variant="ghost"
-                size="icon"
-                onClick={() =>
-                  onChange({
-                    ...data,
-                    experience: data.experience.filter((_, i) => i !== index)
-                  })
-                }
+                variant="outline"
+                size="sm"
+                onClick={() => addBulletPoint(index)}
               >
-                <Trash2 className="h-4 w-4" />
+                <Plus className="h-4 w-4 mr-2" />
+                Add Point
               </Button>
             </div>
             
-            <div className="space-y-4">
-              <div>
-                <Label>Company</Label>
-                <Input
-                  value={exp.company}
-                  onChange={(e) => {
-                    const newExp = [...data.experience];
-                    newExp[index] = { ...exp, company: e.target.value };
-                    onChange({ ...data, experience: newExp });
-                  }}
-                />
-              </div>
-              
-              <div>
-                <Label>Position</Label>
-                <Input
-                  value={exp.position}
-                  onChange={(e) => {
-                    const newExp = [...data.experience];
-                    newExp[index] = { ...exp, position: e.target.value };
-                    onChange({ ...data, experience: newExp });
-                  }}
-                />
-              </div>
-              
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <Label>Start Date</Label>
-                  <Input
-                    value={exp.startDate}
-                    onChange={(e) => {
-                      const newExp = [...data.experience];
-                      newExp[index] = { ...exp, startDate: e.target.value };
-                      onChange({ ...data, experience: newExp });
-                    }}
-                  />
-                </div>
-                <div>
-                  <Label>End Date</Label>
-                  <Input
-                    value={exp.endDate}
-                    onChange={(e) => {
-                      const newExp = [...data.experience];
-                      newExp[index] = { ...exp, endDate: e.target.value };
-                      onChange({ ...data, experience: newExp });
-                    }}
-                  />
-                </div>
-              </div>
-              
-              <div>
-                <Label>Description</Label>
+            {experience.bulletPoints.map((bullet, bulletIndex) => (
+              <div key={bulletIndex} className="flex gap-2 items-start">
+                <GripVertical className="h-4 w-4 mt-2 text-gray-400" />
                 <Textarea
-                  value={exp.description}
-                  onChange={(e) => {
-                    const newExp = [...data.experience];
-                    newExp[index] = { ...exp, description: e.target.value };
-                    onChange({ ...data, experience: newExp });
-                  }}
+                  placeholder="Enter bullet point..."
+                  value={bullet}
+                  onChange={(e) => updateBulletPoint(index, bulletIndex, e.target.value)}
+                  className="flex-1"
                 />
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={() => removeBulletPoint(index, bulletIndex)}
+                >
+                  <Trash2 className="h-4 w-4" />
+                </Button>
               </div>
-            </div>
+            ))}
           </div>
-        ))}
-      </div>
+        </div>
+      ))}
+
+      <Button onClick={addExperience} variant="outline" className="w-full">
+        <Plus className="h-4 w-4 mr-2" />
+        Add Experience
+      </Button>
     </div>
   );
 } 

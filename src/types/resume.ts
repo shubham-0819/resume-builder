@@ -14,12 +14,13 @@ export interface Experience {
   position: string;
   startDate: string;
   endDate: string;
-  description: string;
+  location: string;
+  bulletPoints: string[];
 }
 
 export interface Skill {
-  name: string;
-  level: string;
+  category: string;
+  items: string[];
 }
 
 export interface Education {
@@ -27,6 +28,7 @@ export interface Education {
   degree: string;
   startDate: string;
   endDate: string;
+  location: string;
   description: string;
 }
 

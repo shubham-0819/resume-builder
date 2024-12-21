@@ -1,7 +1,7 @@
 import { Button } from '@/components/ui/button';
 import { TemplateSelector } from './TemplateSelector';
 import { ResumeTemplate } from '@/types/template';
-import { Download, FileJson, FileUp, Briefcase, PanelLeftClose, PanelLeftOpen } from 'lucide-react';
+import { Download, FileUp, Briefcase, PanelLeftClose, PanelLeftOpen, Github as GithubIcon } from 'lucide-react';
 import { ExportDialog } from './ExportDialog';
 import { useState, useRef } from 'react';
 import { ResumeData } from '@/types/resume';
@@ -78,6 +78,16 @@ export function Header({
         <Download className="mr-2 h-4 w-4" />
         Export
       </Button>
+
+      <a
+        href="https://github.com/shubham-0819"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <Button variant="ghost" size="icon">
+          <GithubIcon className="h-5 w-5" />
+        </Button>
+      </a>
 
       <ExportDialog 
         open={isExportOpen} 

@@ -1,34 +1,45 @@
 import { ResumeData } from '@/types/resume';
 
 export const defaultResumeData: ResumeData = {
-  name: "Your name",
-  jobTitle: "Senior Software Developer",
+  name: "Shubham singh",
+  jobTitle: "Software Developer",
   contact: [
-    { icon: "📧", value: "your-username@gmail.com" },
+    { icon: "📧", value: "shubhamsingh0819@gmail.com" },
     { icon: "📱", value: "+91 XXXXXXXXXX" },
     { icon: "📍", value: "New Delhi, India" }
   ],
   socialLinks: [
-    { platform: "GitHub", icon: "🔗", url: "https://github.com/gitub-username" },
-    { platform: "Twitter", icon: "🔗", url: "https://twitter.com/twitter-handle" }
+    { platform: "GitHub", icon: "🔗", url: "https://github.com/shubham-0819" },
+    { platform: "Twitter", icon: "🔗", url: "https://twitter.com/shubham_0819" }
   ],
-  summary: "Results-driven Software Developer with 3+ years of experience specializing in full-stack web development. Proven expertise in JavaScript, Angular, and Node.js, with a strong focus on building scalable applications and reusable components. Experienced team lead with a track record of mentoring developers and delivering innovative solutions in geospatial and computer vision domains.",
-  experience: [
-    {
-      company: "Your Company",
-      position: "Software Developer / Team Lead",
-      date: "Apr 2021 - Present",
-      location: "New Delhi",
-      achievements: [
-        "Architected and developed a comprehensive computer vision workflow platform, incorporating inference viewing, data labeling, and quality control capabilities, leading to a 40% improvement in ML model development efficiency",
-        "Designed and implemented a framework-agnostic UI component library and AI API SDKs, reducing development time by 50% for subsequent projects",
-        "Built a distributed AI data management system using Express, SQLite, and PostgreSQL, handling 10TB+ of vision data",
-        "Developed and maintained a geospatial analytics platform integrating computer vision capabilities with mapping functionalities, serving 100K+ daily users",
-        "Led implementation of enterprise-grade web applications using Angular and custom web components",
-        "Mentored a team of four developers through weekly workshops, resulting in 30% faster project delivery times"
-      ]
-    }
-  ],
+  summary: "Frontend-focused Software Developer with 3+ years of experience specializing in building responsive and scalable web applications. Expert in Angular, React, and modern JavaScript, with a strong focus on creating reusable UI components and optimizing application performance.",
+  experience: [{
+    company: "MapMyIndia",
+    position: "Software Developer",
+    startDate: "Oct, 2021",
+    endDate: "Present",
+    location: "New Delhi",
+    bulletPoints: [
+      "Architected and developed a comprehensive computer vision workflow platform, incorporating inference viewing, data labeling, and quality control capabilities",
+      "Led frontend architecture decisions and established coding standards for a team of 4 developers",
+      "Optimized performance and scalability of web applications",
+      "Developed and maintained a geospatial analytics platform integrating computer vision capabilities with mapping functionalities, serving 10K+ daily users",
+      "Created a reusable UI component library using web components that reduced development time by 50%"
+    ]
+  },
+  {
+    company: "MapMyIndia",
+    position: "Software Developer Intern",
+    startDate: "Apr, 2021",
+    endDate: "Sep, 2021",
+    location: "New Delhi",
+    bulletPoints: [
+      "Contributed to developing training program for new interns, focusing on Angular, TypeScript, and web component development",
+      "Developed a web application for ML team to view and analyze inference results",
+      "Used web scraping to automate data extraction from external sources",
+    ]
+  }
+],
   skills: [
     {
       category: "Frontend",
@@ -65,8 +76,10 @@ export const defaultResumeData: ResumeData = {
     {
       institution: "ITS Engineering College, AKTU",
       degree: "Bachelor of Technology in Computer Science and Engineering",
-      date: "Aug 2017 - Sep 2021",
-      location: "Greater Noida"
+      startDate: "Aug 2017",
+      endDate: "Sep 2021",
+      location: "Greater Noida",
+      description: "Graduated with First Class Honours"
     }
   ]
 };
