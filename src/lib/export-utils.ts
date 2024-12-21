@@ -7,7 +7,7 @@ export function exportToPDF(fileName: string, config?: PdfConfig) {
   if (!element) return;
 
   const opt = {
-    margin: Object.values(config?.margin || { top: 10, right: 10, bottom: 10, left: 10 }),
+    margin: Object.values( { top: 10, right: 10, bottom: 10, left: 10 }),
     filename: `${fileName}.pdf`,
     image: { type: 'jpeg', quality: (config?.imageQuality || 98) / 100 },
     html2canvas: { 

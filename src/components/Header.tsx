@@ -45,7 +45,7 @@ export function Header({
   };
 
   return (
-    <header className="border-b px-4 py-2 flex items-center gap-4">
+    <header className="border-b px-4 py-2 flex items-center gap-4 bg-white">
       <Button
         variant="ghost"
         size="icon"
@@ -54,10 +54,8 @@ export function Header({
       >
         {isSidebarVisible ? <PanelLeftClose /> : <PanelLeftOpen />}
       </Button>
-      <div className="flex items-center gap-2 flex-1">
-        <Briefcase className="h-6 w-6" />
-        <h2 className="text-lg font-semibold">Resume Builder</h2>
-      </div>
+
+      <div className="flex-1" />
       
       <TemplateSelector onSelect={onTemplateSelect} />
       
