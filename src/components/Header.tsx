@@ -1,7 +1,7 @@
 import { Button } from '@/components/ui/button';
 import { TemplateSelector } from './TemplateSelector';
 import { ResumeTemplate } from '@/types/template';
-import { Download, FileJson, FileUp, Briefcase } from 'lucide-react';
+import { Download, FileJson, FileUp, Briefcase, PanelLeftClose, PanelLeftOpen } from 'lucide-react';
 import { ExportDialog } from './ExportDialog';
 import { useState, useRef } from 'react';
 import { ResumeData } from '@/types/resume';
@@ -10,9 +10,17 @@ interface HeaderProps {
   onTemplateSelect: (template: ResumeTemplate) => void;
   resumeData: ResumeData;
   onImportJSON: (data: ResumeData) => void;
+  isSidebarVisible: boolean;
+  onToggleSidebar: () => void;
 }
 
-export function Header({ onTemplateSelect, resumeData, onImportJSON }: HeaderProps) {
+export function Header({ 
+  onTemplateSelect, 
+  resumeData, 
+  onImportJSON,
+  isSidebarVisible,
+  onToggleSidebar 
+}: HeaderProps) {
   const [isExportOpen, setIsExportOpen] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -37,39 +45,45 @@ export function Header({ onTemplateSelect, resumeData, onImportJSON }: HeaderPro
   };
 
   return (
-    <div className="border-b">
-      <div className="flex h-16 items-center px-4 gap-4">
-        <div className="flex items-center gap-2 flex-1">
-          <Briefcase className="h-6 w-6" />
-          <h2 className="text-lg font-semibold">Resume Builder</h2>
-        </div>
-        
-        <TemplateSelector onSelect={onTemplateSelect} />
-        
-        <input
-          type="file"
-          ref={fileInputRef}
-          onChange={handleFileChange}
-          accept=".json"
-          className="hidden"
-        />
-        
-        <Button variant="outline" onClick={handleImportClick}>
-          <FileUp className="mr-2 h-4 w-4" />
-          Import
-        </Button>
-        
-        <Button onClick={() => setIsExportOpen(true)}>
-          <Download className="mr-2 h-4 w-4" />
-          Export
-        </Button>
-
-        <ExportDialog 
-          open={isExportOpen} 
-          onOpenChange={setIsExportOpen}
-          resumeData={resumeData}
-        />
+    <header className="border-b px-4 py-2 flex items-center gap-4">
+      <Button
+        variant="ghost"
+        size="icon"
+        onClick={onToggleSidebar}
+        className="shrink-0"
+      >
+        {isSidebarVisible ? <PanelLeftClose /> : <PanelLeftOpen />}
+      </Button>
+      <div className="flex items-center gap-2 flex-1">
+        <Briefcase className="h-6 w-6" />
+        <h2 className="text-lg font-semibold">Resume Builder</h2>
       </div>
-    </div>
+      
+      <TemplateSelector onSelect={onTemplateSelect} />
+      
+      <input
+        type="file"
+        ref={fileInputRef}
+        onChange={handleFileChange}
+        accept=".json"
+        className="hidden"
+      />
+      
+      <Button variant="outline" onClick={handleImportClick}>
+        <FileUp className="mr-2 h-4 w-4" />
+        Import
+      </Button>
+      
+      <Button onClick={() => setIsExportOpen(true)}>
+        <Download className="mr-2 h-4 w-4" />
+        Export
+      </Button>
+
+      <ExportDialog 
+        open={isExportOpen} 
+        onOpenChange={setIsExportOpen}
+        resumeData={resumeData}
+      />
+    </header>
   );
 }

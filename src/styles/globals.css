@@ -1,0 +1,4 @@
+/* Add this to your global styles */
+.resize-active {
+  user-select: none;
+} 
